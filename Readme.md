@@ -99,3 +99,25 @@ express.static('public') in simple words: It serves static files, like HTML, CSS
 
 npm i morgan
 Morgan is a middleware for Node.js that logs HTTP request details, like request method, URL, and response status code, making it easier to monitor and debug web server activity.
+
+
+
+
+------------------------CRUD--------------------------
+GET: Use GET to request data from a specified resource. It's like asking for information, such as viewing a webpage or fetching a list of products.
+
+POST: Use POST to submit data to be processed to a specified resource. It's like sending information to be saved or acted upon, such as submitting a form or creating a new user account.
+
+PUT: Use PUT when you want to completely replace an existing resource with a new one. It's like changing a book's entire content with a new version.
+
+PATCH: Use PATCH when you want to partially update an existing resource. It's like making edits or corrections to a book without rewriting the whole thing.
+
+DELETE: Use DELETE to request the removal of a specified resource. It's like asking the server to delete a file or record from a database, permanently removing it from the system.
+
+
+
+
+
+
+---------------MVC------------------
+------------Foolder-Structure---------
