@@ -24,10 +24,10 @@ Response Status Codes
 
 
 400 : Bad Request
-401 :Unauthorized
-403 :Forbidden
-404 :Not Found
-405 Method Not Allowed
+401 : Unauthorized
+403 : Forbidden
+404 : Not Found
+405 : Method Not Allowed
 
 
 500 : Internal Server Error
@@ -121,3 +121,14 @@ DELETE: Use DELETE to request the removal of a specified resource. It's like ask
 
 ---------------MVC------------------
 ------------Foolder-Structure---------
+ 
+model - data business logic
+view - show to be data
+contollers - logic btw model and view
+
+
+Models: This is where your application's data and business logic reside. Models represent the structure and behavior of your data, including database interactions, data validation, and business rules.
+
+Views: Views are responsible for presenting data to the user. They contain the HTML, CSS, and client-side JavaScript code that define the user interface of your application. Views typically render data retrieved from the models.
+
+Controllers: Controllers act as intermediaries between the models and views. They handle user input, process requests, and determine the appropriate response. Controllers invoke methods on models to retrieve or manipulate data and then pass that data to the views for display.
