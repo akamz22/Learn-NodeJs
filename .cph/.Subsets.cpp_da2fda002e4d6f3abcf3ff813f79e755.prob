@@ -1,0 +1,1 @@
+{"name":"Local: Subsets","url":"d:\\PROJECTS\\Learn-NodeJs\\Subsets.cpp","tests":[{"id":1714592177014,"input":"5\n7R 8L 7L 8R 6R","output":"2"}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"d:\\PROJECTS\\Learn-NodeJs\\Subsets.cpp","group":"local","local":true}
