@@ -1,20 +1,16 @@
 import fs from 'fs';
 const index = fs.readFileSync('index.html', 'utf-8')
-const data = JSON.parse(fs.readFileSync('./public/user.json', 'utf-8'))
+const data = JSON.parse(fs.readFileSync('./data.json', 'utf-8'))
 const users = data.users;
 
-
-console.log(data.users);
 //CREATE POST /users
 const createUser = (req, res) => {
-    console.log(req.body);
     users.push(req.body)
     res.json({ type: "POST Successfull", data: req.body })
 }
 
 //READ data Get users 
 const getAllUsers = (req, res) => {
-    console.log(users);
     res.json(users)
 }
 //READ data Get One user by id 
@@ -33,7 +29,6 @@ const updateUser = (req, res) => {
 }
 //UPDATE data Get users -->
 const patchUser = (req, res) => {
-    console.log(users);
     const id = +req.params.id;
     const userIndex = users.findIndex(p => p.id === id);
 

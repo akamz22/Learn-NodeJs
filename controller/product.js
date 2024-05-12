@@ -6,7 +6,6 @@ const products = data.products;
 
 //CREATE POST /products
 const createProduct = (req, res) => {
-    console.log(req.body);
     products.push(req.body)
     res.json({ type: "POST Successfull", data: req.body })
 }

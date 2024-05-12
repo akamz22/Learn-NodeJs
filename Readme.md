@@ -132,3 +132,23 @@ Models: This is where your application's data and business logic reside. Models 
 Views: Views are responsible for presenting data to the user. They contain the HTML, CSS, and client-side JavaScript code that define the user interface of your application. Views typically render data retrieved from the models.
 
 Controllers: Controllers act as intermediaries between the models and views. They handle user input, process requests, and determine the appropriate response. Controllers invoke methods on models to retrieve or manipulate data and then pass that data to the views for display.
+
+
+
+
+
+
+MONGODB----------------------------------------------------------------
+
+Mongo DB community server comes with in-bulit Mongo CLI which can act as a terminal based client. You can use the CRUD functionality from here
+
+
+
+Show database
+Use database
+Show collection
+Create Query (insertOne, insertMany)
+Read Query (find, findOne)
+Update Query (updateOne)
+Delete Query (deleteOne, deleteMany)
+Delete database (drop)
