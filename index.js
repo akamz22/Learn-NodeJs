@@ -4,14 +4,13 @@ import dotenv from 'dotenv';
 import productRouter from './routes/product.js';
 import userRouter from './routes/user.js';
 import mongoose from 'mongoose';
-const { Schema } = mongoose;
 
 const app = express();
 
 //Body Parser
 dotenv.config();
 const port  = process.env.PORT || 8080;
-console.log('env : ',process.env.DB_PASSWORD);
+// console.log('env : ',process.env.DB_PASSWORD);
 
 
 async function connectToDatabase() {
@@ -26,24 +25,7 @@ async function connectToDatabase() {
 // Call the async function
 connectToDatabase();
 
-//Product Schema
 
-const productSchema = new Schema({
-    id: Number,
-    title: String,
-    description: String,
-    price: Number,
-    discountPercentage: Number,
-    rating: Number,
-    stock: Number,
-    brand: String,
-    category: String,
-    thumbnail: String,
-    images: [String]
-});
-
-//Product model
-const Product = mongoose.model('Product', productSchema);
 
 
 

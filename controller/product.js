@@ -1,58 +1,76 @@
-import fs from 'fs';
-const index = fs.readFileSync('index.html', 'utf-8')
-const data = JSON.parse(fs.readFileSync('data.json', 'utf-8'))
-const products = data.products;
+// import fs from 'fs';
+// const index = fs.readFileSync('index.html', 'utf-8')
+// const data = JSON.parse(fs.readFileSync('data.json', 'utf-8'))
+// const products = data.products;
+import Product from '../model/product.js'
 
 
 //CREATE POST /products
-const createProduct = (req, res) => {
-    products.push(req.body)
-    res.json({ type: "POST Successfull", data: req.body })
+const createProduct = async (req, res) => {
+    try {
+        const product = new Product(req.body);
+        const savedProduct = await product.save()
+        console.log(savedProduct);
+        res.json({ type: "POST Successfull", savedProduct })
+    } catch (error) {
+        res.status(400).json(error);
+    }
 }
 
 //READ data Get Products 
-const getAllProducts = (req, res) => {
-    res.json(data)
+const getAllProducts = async (req, res) => {
+    const products = await Product.find()//to fetch all
+    // const products = await Product.find({price:{$gt:1000}})//To fetch by condition
+    // const products = await Product.findOne({id:2})//To in form of object fetch by condition
+    res.json(products)
 }
 //READ data Get One Product by id 
-const getProductById = (req, res) => {
-    const id = +req.params.id;
-    const product = products.find(p => p.id === id)
-    res.json(product)
-}
-
-//UPDATE data Get Products -->
-const updateProduct = (req, res) => {
-    const id = +req.params.id;
-    const productIndex = products.findIndex(p => p.id === id);
-    products.splice([productIndex], 1, { ...req.body, id: id })
+const getProductById = async(req, res) => {
+    const idToFind = req.params.id;
+    const products = await Product.findById(idToFind);
     res.json(products)
 }
-//UPDATE data Get Products -->
-const patchProduct = (req, res) => {
-    const id = +req.params.id;
-    const productIndex = products.findIndex(p => p.id === id);
 
-    const product = products[productIndex];
-    products.splice([productIndex], 1, { ...product, ...req.body })
-    res.json(products)
+//PUT UPDATE data Get Products --> Replace one product data completly 
+const updateProduct = async (req, res) => {
+    try {
+        const id = req.params.id;
+        console.log(id);
+        const doc = await Product.findOneAndReplace({ _id: id }, req.body, { new: true });
+        res.status(201).json(doc);
+    } catch (error) {
+        console.error(error);
+        res.status(500).json(error);
+    }
+}
+//PATCH UPDATE data Get Products --> Update Existing Data
+const patchProduct = async (req, res) => {
+    try {
+        const id = req.params.id;
+        console.log(id);
+        const doc = await Product.findOneAndUpdate({ _id: id }, req.body, { new: true });
+        res.status(201).json(doc);
+    } catch (error) {
+        console.error(error);
+        res.status(500).json(error);
+    }
 }
 
 //DELETE  /products/:id
-const deleteProductById = (req, res) => {
-    const id = +req.params.id;
-    const productIndex = products.findIndex(p => p.id === id);
-    const deletedData = products[productIndex]
-    products.splice([productIndex], 1)
-    res.status(201).json(
-        {
-            deleted: deletedData,
-            data: products
-        })
+const deleteProductById = async(req, res) => {
+    try {
+        const id = req.params.id;
+        console.log(id);
+        const doc = await Product.findOneAndDelete({ _id: id }, req.body, { new: true });
+        res.status(201).json(doc);
+    } catch (error) {
+        console.error(error);
+        res.status(500).json(error);
+    }
 }
 
 
-export { createProduct,getAllProducts, getProductById, deleteProductById, updateProduct, patchProduct}
+export { createProduct, getAllProducts, getProductById, deleteProductById, updateProduct, patchProduct }
 
 
 
