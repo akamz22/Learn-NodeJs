@@ -12,9 +12,9 @@ const productSchema = new Schema({
     description: String,
     price: { required: true, type: Number, min: [0, 'wrong price'] },
     discountPercentage: { type: Number, min: [0, 'wrong min discount'], max: [50, 'wrong discount'] },
-    rating: { type: Number, min: [0, 'wrong rating'], max: [5, 'wrong rating'] },
+    rating: { type: Number, min: [0, 'wrong rating'], max: [5, 'wrong rating'], default:0 },
     stock: Number,
-    brand: { type: String, required: true },
+    brand: { type: String},
     category: String,
     thumbnail: { type: String, required: true },
     images: [String]

@@ -4,7 +4,8 @@ import dotenv from 'dotenv';
 import productRouter from './routes/product.js';
 import userRouter from './routes/user.js';
 import mongoose from 'mongoose';
-
+import cors from 'cors';
+import path from 'path';
 const app = express();
 
 //Body Parser
@@ -15,7 +16,7 @@ const port  = process.env.PORT || 8080;
 
 async function connectToDatabase() {
     try {
-        await mongoose.connect('mongodb://127.0.0.1:27017/ecommerce');
+        await mongoose.connect(process.env.DB_URL);
         console.log("Database connection established");
     } catch (error) {
         console.error("Database connection error:", error);
@@ -30,15 +31,17 @@ connectToDatabase();
 
 
 
-
+app.use(cors());
 
 app.use(express.json());
 //To print details of api calls
 app.use(morgan('combined'));
-app.use(express.static('public'));
+app.use(express.static(process.env.PUBLIC_DIR));
 app.use('/products',productRouter)
 app.use('/users',userRouter)
-
+app.use('*',(req,res)=>{
+    res.sendFile(path.resolve(__dirname, 'dist', 'index.html'));
+})
 app.listen(port, () => {
     console.log('Server is listening on port 8080');
 })
