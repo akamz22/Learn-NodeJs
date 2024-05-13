@@ -1,6 +1,5 @@
 {
     "version": 2,
-    "dist":true,
     "builds": [
         {
             "src": "index.js",
