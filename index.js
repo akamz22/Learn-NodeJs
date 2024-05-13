@@ -5,6 +5,8 @@ import productRouter from './routes/product.js';
 import userRouter from './routes/user.js';
 import mongoose from 'mongoose';
 import cors from 'cors';
+import { fileURLToPath } from 'url';
+import { dirname } from 'path';
 import path from 'path';
 const app = express();
 
@@ -29,7 +31,8 @@ connectToDatabase();
 
 
 
-
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 
 app.use(cors());
 
