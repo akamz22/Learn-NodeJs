@@ -43,7 +43,7 @@ app.use(morgan('combined'));
 app.use(express.static(process.env.PUBLIC_DIR));
 app.use('/products',productRouter)
 app.use('/users',userRouter)
-app.use('*',(req,res)=>{
+app.get('/',(req,res)=>{
     res.sendFile(path.resolve(__dirname, 'dist', 'index.html'));
 })
 app.listen(port, () => {
